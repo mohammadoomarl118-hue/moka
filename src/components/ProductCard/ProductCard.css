@@ -1,0 +1,629 @@
+ /* =========================================================
+   MOKA PRODUCT CARD
+========================================================= */
+
+.moka-product-card-holo-wrapper {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  perspective: 1100px;
+}
+
+.moka-product-card {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  background: var(--surface);
+
+  color: var(--text);
+
+  box-sizing: border-box;
+
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  box-shadow:
+    0 8px 25px rgba(45, 22, 10, 0.06);
+
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    background 250ms ease;
+}
+
+.moka-product-card:hover {
+  border-color: rgba(200, 155, 91, 0.5);
+
+  box-shadow:
+    0 18px 40px rgba(45, 22, 10, 0.13);
+}
+
+
+/* =========================================================
+   HOLO FOIL
+========================================================= */
+
+.moka-product-holo-foil {
+  position: absolute;
+  inset: 0;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.02) 30%,
+      rgba(255, 255, 255, 0.18) 50%,
+      rgba(255, 255, 255, 0.02) 70%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+
+  background-position:
+    calc(var(--holo-px, 0.5) * 100%)
+    calc(var(--holo-py, 0.5) * 100%),
+    center;
+
+  background-size:
+    180% 180%,
+    100% 100%;
+
+  mix-blend-mode: screen;
+
+  transition: opacity 180ms ease;
+}
+
+.moka-product-card-holo-wrapper:hover
+.moka-product-holo-foil {
+  opacity: 0.5;
+}
+
+
+/* =========================================================
+   HOLO GLARE
+========================================================= */
+
+.moka-product-holo-glare {
+  position: absolute;
+  inset: 0;
+
+  z-index: 21;
+
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  opacity: var(--holo-glare-opacity, 0);
+
+  background:
+    radial-gradient(
+      220px circle
+      at
+      calc(var(--holo-px, 0.5) * 100%)
+      calc(var(--holo-py, 0.5) * 100%),
+      rgba(255, 255, 255, 0.42),
+      rgba(255, 255, 255, 0.12) 28%,
+      transparent 68%
+    );
+
+  mix-blend-mode: screen;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.moka-product-card-content {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================================
+   HOLO SHADOW
+========================================================= */
+
+.moka-product-card-shadow {
+  position: absolute;
+
+  left: 8%;
+  right: 8%;
+  bottom: -24px;
+
+  height: 42px;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(30, 18, 10, 0.22),
+      transparent 70%
+    );
+
+  opacity: 0.75;
+
+  filter: blur(2px);
+
+  will-change: transform;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.moka-product-image {
+  position: relative;
+
+  width: 100%;
+  height: 245px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  background: var(--surface-soft);
+}
+
+.moka-product-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition:
+    transform 600ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.moka-product-card:hover .moka-product-image img {
+  transform: scale(1.045);
+}
+
+
+/* =========================================================
+   IMAGE PLACEHOLDER
+========================================================= */
+
+.moka-product-image-placeholder {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(200, 155, 91, 0.16),
+      transparent 60%
+    ),
+    var(--surface-soft);
+
+  color: var(--gold);
+
+  font-size: 52px;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.moka-product-category {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  z-index: 2;
+
+  padding: 6px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+
+  background: rgba(30, 18, 12, 0.58);
+
+  color: #fff;
+
+  backdrop-filter: blur(10px);
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.moka-product-info {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  min-height: 190px;
+  flex: 1;
+
+  box-sizing: border-box;
+
+  padding: 18px;
+}
+
+
+/* =========================================================
+   NAME + PRICE
+========================================================= */
+
+.moka-product-heading {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  width: 100%;
+
+  direction: ltr;
+
+  flex-shrink: 0;
+}
+
+.moka-product-heading h3 {
+  min-width: 0;
+
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  text-align: left;
+
+  overflow-wrap: anywhere;
+}
+
+.moka-product-price {
+  flex-shrink: 0;
+
+  color: var(--coffee);
+
+  font-size: 16px;
+  font-weight: 900;
+
+  line-height: 1.4;
+
+  direction: ltr;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.moka-product-description {
+  width: 100%;
+
+  margin: 10px 0 17px;
+
+  color: var(--text-soft);
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+  direction: rtl;
+  text-align: right;
+
+  overflow-wrap: anywhere;
+
+  flex-shrink: 0;
+
+  min-height: calc(13px * 1.8 * 3);
+  max-height: calc(13px * 1.8 * 3);
+
+  overflow: hidden;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.moka-product-add-button {
+  position: relative;
+
+  display: flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  height: 48px;
+  min-height: 48px;
+
+  margin-top: auto;
+  margin-right: 0;
+  margin-left: 0;
+
+  padding: 0 16px;
+
+  box-sizing: border-box;
+
+  flex-shrink: 0;
+
+  border: 1px solid var(--coffee);
+
+  border-radius: 13px;
+
+  background: var(--coffee);
+
+  color: #fff;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+
+  appearance: none;
+
+  box-shadow:
+    0 7px 18px rgba(110, 62, 30, 0.16);
+
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.moka-product-add-button:hover {
+  background: var(--coffee-dark);
+
+  border-color: var(--coffee-dark);
+
+  box-shadow:
+    0 10px 24px rgba(110, 62, 30, 0.25);
+}
+
+.moka-product-add-button:active {
+  transform: scale(0.97);
+}
+
+.moka-product-add-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   PLUS ICON
+========================================================= */
+
+.moka-product-add-icon {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+html.dark .moka-product-card {
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .moka-product-card:hover {
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .moka-product-add-button {
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  .moka-product-image {
+    height: 230px;
+  }
+
+  .moka-product-info {
+    min-height: 190px;
+    padding: 16px;
+  }
+
+  .moka-product-heading h3 {
+    font-size: 18px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .moka-product-card {
+    border-radius: 18px;
+  }
+
+  .moka-product-image {
+    height: 220px;
+  }
+
+  .moka-product-info {
+    min-height: 185px;
+    padding: 15px;
+  }
+
+  .moka-product-heading {
+    gap: 12px;
+  }
+
+  .moka-product-heading h3 {
+    font-size: 17px;
+  }
+
+  .moka-product-price {
+    font-size: 15px;
+  }
+
+  .moka-product-description {
+    margin-top: 9px;
+    margin-bottom: 14px;
+
+    font-size: 12px;
+    line-height: 1.75;
+
+    min-height: calc(12px * 1.75 * 3);
+    max-height: calc(12px * 1.75 * 3);
+  }
+
+  .moka-product-add-button {
+    height: 46px;
+    min-height: 46px;
+
+    margin-top: auto;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+  .moka-product-image {
+    height: 195px;
+  }
+
+  .moka-product-info {
+    min-height: 180px;
+    padding: 13px;
+  }
+
+  .moka-product-heading h3 {
+    font-size: 16px;
+  }
+
+  .moka-product-price {
+    font-size: 14px;
+  }
+
+  .moka-product-add-button {
+    height: 44px;
+    min-height: 44px;
+  }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .moka-product-card-holo-wrapper {
+    perspective: none;
+  }
+
+  .moka-product-holo-foil,
+  .moka-product-holo-glare,
+  .moka-product-card-shadow {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .moka-product-holo-foil,
+  .moka-product-holo-glare,
+  .moka-product-card-shadow {
+    display: none;
+  }
+}
