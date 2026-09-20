@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moka-zeta-woad.vercel.app/sitemap.xml
